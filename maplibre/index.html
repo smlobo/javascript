@@ -1,62 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome to lobo.codes</title>
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <title>MapLibre Quickstart</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <!-- MapLibre CSS -->
+    <link
+            href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css"
+            rel="stylesheet"
+    />
+
+    <!-- Optional styling so the map container fills screen -->
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
 </head>
 <body>
-<div class="col-lg-8 mx-auto p-3 py-md-5">
-    <h1>Welcome to lobo.codes</h1>
+<div id="map"></div>
 
-    <script>
-        function addPort(url) {
-            if (location.port != null && !url.href.includes("lobo.codes:" + location.port)) {
-                let splitHref = url.href.split("lobo.codes");
-                url.href = splitHref[0] + "lobo.codes:" + location.port + splitHref[1];
-                console.log("href with port: " + url.href);
-            }
-            return false;
-        }
-    </script>
+<!-- MapLibre JS -->
+<script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
 
-    <br>
-    You probably are looking for:
-    <br><br>
-    <ul>
-        <li><a href="//ryan.lobo.codes" onclick="addPort(this)">ryan.lobo.codes</a></li>
-        <ul>
-            <li><a href="//ryan.lobo.codes/visitors" onclick="addPort(this)">ryan.lobo.codes/visitors</a></li>
-        </ul>
-        <li><a href="//bliu.lobo.codes" onclick="addPort(this)">bliu.lobo.codes</a></li>
-        <ul>
-            <li><a href="//bliu.lobo.codes/visitors" onclick="addPort(this)">bliu.lobo.codes/visitors</a></li>
-        </ul>
-        <li><a href="//sheldon.lobo.codes" onclick="addPort(this)">sheldon.lobo.codes</a></li>
-        <ul>
-            <li><a href="//sheldon.lobo.codes/resume" onclick="addPort(this)">sheldon.lobo.codes/resume</a></li>
-            <li><a href="//sheldon.lobo.codes/visitors" onclick="addPort(this)">sheldon.lobo.codes/visitors</a></li>
-        </ul>
-        <li><a href="//hikes.lobo.codes" onclick="addPort(this)">hikes.lobo.codes</a></li>
-        <ul>
-            <li><a href="//hikes.lobo.codes/visitors" onclick="addPort(this)">hikes.lobo.codes/visitors</a></li>
-        </ul>
-        <li><a href="//wasm.lobo.codes" onclick="addPort(this)">wasm.lobo.codes</a></li>
-        <ul>
-            <li><a href="//wasm.lobo.codes/visitors" onclick="addPort(this)">wasm.lobo.codes/visitors</a></li>
-        </ul>
-        <li><a href="//test-vue.lobo.codes" onclick="addPort(this)">test-vue.lobo.codes</a></li>
-        <ul>
-            <li><a href="//test-vue.lobo.codes/visitors" onclick="addPort(this)">test-vue.lobo.codes/visitors</a></li>
-        </ul>
-    </ul>
-    <br><br>
-    <a href="/visitors">Visitors</a>
-    <br><br>
-    <a href="https://stats.uptimerobot.com/qwFUEiljSS" target="_blank"><img src="static/common/UptimeRobot.png" title="GoLang" style="width:28px;height:28px;"> Status Page</a>
-    <footer class="pt-5 my-5 text-muted border-top">
-        <iframe src="footer.html" width="100%" height="100%"></iframe>
-    </footer>
-</div>
+<script>
+    // Initialize map
+    const map = new maplibregl.Map({
+        container: "map", // the ID of the div
+        style: "https://demotiles.maplibre.org/style.json", // style URL (can use your own)
+        center: [-74.5, 40], // initial center [lng, lat]
+        zoom: 2 // initial zoom level
+    });
+
+    // Add zoom + rotation controls (optional)
+    map.addControl(new maplibregl.NavigationControl());
+</script>
 </body>
 </html>
